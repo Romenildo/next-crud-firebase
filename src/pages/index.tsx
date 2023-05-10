@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Button from "../components/Button";
 import Form from "../components/Form";
 import Layout from "../components/Layout";
@@ -15,6 +16,12 @@ export default function Home() {
   function onDelete(){
 
   }
+
+  function saveClient(client: Client){
+
+  }
+
+  const [show, setShow] = useState<'table'| 'form'>('table')
   return (
     <div className={`
         flex justify-center items-center h-screen
@@ -22,12 +29,19 @@ export default function Home() {
         text-white
     `}>
       <Layout title="Cadastro Simples">
-        <div className="flex justify-end"> 
-          <Button className="mb-4" color="green"> Novo Cliente</Button>
-        </div>
         
+        {show === 'table'?(
+          <>
+            <div className="flex justify-end"> 
+          <Button className="mb-4" color="green" onClick={()=>setShow('form')}> Novo Cliente</Button>
+        </div>
         <Table clients={clients} onSelect={onSelect} onDelete={onDelete}></Table>
-        <Form client={clients[0]}></Form>
+          </>
+        ):(
+          <Form client={clients[0]} onChangeClient={saveClient} onCancel={()=>setShow('table')}></Form>
+        )}
+        
+        
       </Layout>
     </div>
   )
