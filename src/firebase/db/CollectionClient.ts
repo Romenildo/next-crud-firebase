@@ -1,8 +1,8 @@
 import Client from "../../core/Client";
-import CLientRepository from "../../core/ClientRepository";
-import firebase from "firebase";
+import ClientRepository from "../../core/ClientRepository";
+import firebase from "../config";
 
-export default class CollectionClient implements CLientRepository{
+export default class CollectionClient implements ClientRepository{
 
 
     #conversor = {
@@ -35,7 +35,7 @@ export default class CollectionClient implements CLientRepository{
 
     async getAll():Promise<Client[]>{
         const query = await this.#collection().get()
-        return query.docs.map(doc => doc.data())
+        return query.docs.map(doc => doc.data() ?? [])
 
 
     }
