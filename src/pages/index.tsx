@@ -9,19 +9,28 @@ export default function Home() {
 
 
   const clients = [ new Client('teste', 34, "1"), new Client('teste2',19, "2")]
+  const [show, setShow] = useState<'table'| 'form'>('table')
+  const [client, setClient] = useState<Client>(Client.empty())
 
-  function onSelect(){
 
+  function onSelect(client:Client){
+    setClient(client)
+    setShow('form')
   }
-  function onDelete(){
+  function onDelete(client:Client){
 
   }
 
   function saveClient(client: Client){
+    setShow('table')
+
+  }
+  function newClient(){
+    setClient(Client.empty)
+    setShow('form')
 
   }
 
-  const [show, setShow] = useState<'table'| 'form'>('table')
   return (
     <div className={`
         flex justify-center items-center h-screen
@@ -33,12 +42,12 @@ export default function Home() {
         {show === 'table'?(
           <>
             <div className="flex justify-end"> 
-          <Button className="mb-4" color="green" onClick={()=>setShow('form')}> Novo Cliente</Button>
+          <Button className="mb-4" color="green" onClick={newClient}> Novo Cliente</Button>
         </div>
         <Table clients={clients} onSelect={onSelect} onDelete={onDelete}></Table>
           </>
         ):(
-          <Form client={clients[0]} onChangeClient={saveClient} onCancel={()=>setShow('table')}></Form>
+          <Form client={client} onChangeClient={saveClient} onCancel={()=>setShow('table')}></Form>
         )}
         
         
