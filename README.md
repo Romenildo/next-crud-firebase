@@ -1,8 +1,8 @@
-# Admin-template
-Projeto simples de crud de cleintes em nextJs com tailwindCSS e firebase   
+# Crud Firebase
+Projeto simples de crud de clientes em nextJs com tailwindCSS e firebase   
 Projeto do curso de Next.js e React da Udemy da cod3r 
 
-# Projeto Admin Template
+# Projeto Crud firebase
    Consiste em um modelo de uma aplicação em nextJs com integração ao firebase, com todo o processo de  conecção, criação de collections, principais funções
    de crud de uma aplicação com a classe de clientes, podendo:
    - Criar um novo cliente
